@@ -204,27 +204,16 @@
     // TIP: Try re-using reduce() here.
     if (collection.length === 0) {
       return true;
-    } else if (!iterator) {
-      return _.reduce(collection, function(stillTrue, item) {
-        if (!stillTrue) {
-          return false;
-        } else {
-          if (item == undefined) {
-            return false;
-          } else {
-            return item != false;
-          }
-        }
-      }, true);
     }
     return _.reduce(collection, function(stillTrue, item) {
+      var manipulated = (!iterator) ? item : iterator(item);
       if (!stillTrue) {
         return false;
       } else {
-        if (iterator(item) == undefined) {
+        if (manipulated == undefined) {
           return false;
         } else {
-          return iterator(item) != false;
+          return manipulated != false;
         }
       }
     }, true);
