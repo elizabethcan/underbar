@@ -209,10 +209,10 @@
       if (!stillTrue) {
         return false;
       } else {
-        if (item == undefined) {
+        if (iterator(item) == undefined) {
           return false;
         } else {
-          return item != false;
+          return iterator(item) != false;
         }
       }
     }, true);
