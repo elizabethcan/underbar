@@ -208,8 +208,13 @@
     return _.reduce(collection, function(stillTrue, item) {
       if (!stillTrue) {
         return false;
+      } else {
+        if (item == undefined) {
+          return false;
+        } else {
+          return item != false;
+        }
       }
-      return item == stillTrue;
     }, true);
   };
 
