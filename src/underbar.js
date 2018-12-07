@@ -223,6 +223,11 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    //every returns true if all values are true
+    return !(_.every(collection, function(item) {
+      iterator = iterator || _.identity
+      return !(iterator(item));
+    }))
   };
 
 
