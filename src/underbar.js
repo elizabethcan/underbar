@@ -320,6 +320,17 @@
     //check that the array is a unique array
     //if it is unique, execute the function
     //else return the previous result
+    var inMemory = {};
+    return function() {
+      var argumentsArray = JSON.stringify(arguments);
+      if (inMemory[argumentsArray]) {
+        return inMemory[argumentsArray];
+      } else {
+        var result = func.apply(this, arguments);
+        inMemory[argumentsArray] = result;
+        return result;
+      }
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
